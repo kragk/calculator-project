@@ -1,5 +1,6 @@
 # more_complex_calculator_v3
 
+# functions
 def number_check(input):
 
     try:
@@ -15,13 +16,16 @@ def operator_check(input):
     else:
         return False
 
+# ---------------------------------------------------------------------------------------------
 
 user_input = 0
 calc_seq = []
+
+# COMPLETE. NO NEED FIX.
 while str(user_input).lower() != 'done':
     print(calc_seq)
     user_input = input("Input a number or an operator. Input DONE if finished: ")
-    if user_input == 'done':
+    if str(user_input).lower() == 'done':
         break
     elif len(calc_seq) == 0 and number_check(user_input):
         calc_seq.append(float(user_input))
