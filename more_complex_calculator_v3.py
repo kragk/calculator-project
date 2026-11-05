@@ -26,7 +26,14 @@ while str(user_input).lower() != 'done':
     print(calc_seq)
     user_input = input("Input a number or an operator. Input DONE if finished: ")
     if str(user_input).lower() == 'done':
-        break
+        if len(calc_seq) == 0:
+            print("Enter at least one number.")
+        elif operator_check(calc_seq[-1]):
+            print("Cannot end on an operator.")
+        else:
+            print("Calculating...")
+            break
+
     elif len(calc_seq) == 0 and number_check(user_input):
         calc_seq.append(float(user_input))
     elif len(calc_seq) == 0 and number_check(user_input) is False:
@@ -44,3 +51,21 @@ while str(user_input).lower() != 'done':
         print('Cannot enter two numbers in a row.')
     else:
         print("Cant enter two operators in a row.")
+
+# reading and calculation
+total = calc_seq[0]
+
+for index, calc_seq_present in enumerate(calc_seq):
+    if index > len(calc_seq) - 2:
+        break
+    elif number_check(calc_seq_present):
+        if calc_seq[index + 1] == '+':
+            total = total + calc_seq[index + 2]
+        elif calc_seq[index + 1] == '-':
+            total = total - calc_seq[index + 2]
+        elif calc_seq[index + 1] == '/':
+            total = total / calc_seq[index + 2]
+        elif calc_seq[index + 1] == '*':
+            total = total * calc_seq[index + 2]
+
+print("Answer: ", total)
